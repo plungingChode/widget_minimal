@@ -1,0 +1,6 @@
+/.vscode
+build
+/obj
+*.out
+*.o
+*.txt
