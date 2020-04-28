@@ -8,7 +8,7 @@ class Szambeall : public Widget
 {
 protected:
     int szam;
-    int felso_hat, also_hat;
+    int also_hat, felso_hat;
     teglalap fel_gomb, le_gomb;
 
 public:

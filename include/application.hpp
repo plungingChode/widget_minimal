@@ -12,8 +12,8 @@ protected:
 public:
     virtual ~Application() {};
 
-    void event_loop();
     void register_widget(Widget* w) { widgets.push_back(w); }
+    virtual void event_loop();
     virtual void action(std::string e) = 0;
 };
 

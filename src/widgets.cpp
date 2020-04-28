@@ -4,8 +4,8 @@
 
 using namespace genv;
 
-Widget::Widget(Application *app, int x, int y, int sx, int sy) : 
-    parent(app), _x(x), _y(y), _size_x(sx), _size_y(sy)
+Widget::Widget(Application *app, int x, int y, int sx, int sy) 
+    : _x(x), _y(y), _size_x(sx), _size_y(sy), parent(app) 
 {
     app->register_widget(this);
 }
