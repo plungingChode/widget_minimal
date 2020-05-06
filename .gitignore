@@ -1,6 +1,7 @@
 /.vscode
 build
 /obj
+/lib
 *.out
 *.o
 *.txt

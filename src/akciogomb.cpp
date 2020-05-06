@@ -1,15 +1,15 @@
-#include "gomb.hpp"
+#include "akciogomb.hpp"
 #include "application.hpp"
 
 using namespace std;
 using namespace genv;
 
-Gomb::Gomb(Application *app, int x, int y, int w, int h, string felirat_, function<void()> akcio_)
+AkcioGomb::AkcioGomb(Application *app, int x, int y, int w, int h, string felirat_, string akcio_)
     : Widget(app, x, y, w, h), felirat(felirat_), akcio(akcio_), benyomva(false), hitbox(x, y, w, h)
 {
 }
 
-void Gomb::handle(event ev)
+void AkcioGomb::handle(event ev)
 {
     if (ev.type == ev_mouse)
     {
@@ -21,7 +21,7 @@ void Gomb::handle(event ev)
         {
             if (hitbox.benne(ev.pos_x, ev.pos_y))
             {
-                akcio();
+                parent->action(akcio);
             }
             benyomva = false;
         }
@@ -35,12 +35,12 @@ void Gomb::handle(event ev)
         if (ev.keycode == -key_enter)
         {
             benyomva = false;
-            akcio();
+            parent->action(akcio);
         }
     }
 }
 
-void Gomb::draw()
+void AkcioGomb::draw()
 {
     gout << color(255, 255, 255) << move_to(_x, _y) << box(_size_x, _size_y);
 

@@ -39,8 +39,14 @@ public:
         lis1 = new Lista(this, 150, 30, 100, 5, {"a", "b"});
         lis2 = new Lista(this, 260, 30, 100, 3, {"1", "2", "3", "4", "5", "6", "7", "8"});
 
-        g1 = new Gomb(this, 150, 120, 100, 30, "nyomj meg!", "g1_akcio");
-        g2 = new Gomb(this, 150, 155, 100, 30, "engem is!", "g2_akcio");
+        g1 = new Gomb(this, 150, 120, 100, 30, "nyomj meg!", [&](){ lis1->hozzaad(fnev->get_text()); });
+        g2 = new Gomb(this, 150, 155, 100, 30, "engem is!", [&](){
+            int index = lis1->kijelolt_index();
+            if (index != -1)
+            {
+                lis1->torol(index);
+            }
+        });
 
         ml_label = new StaticText(this, 370, 10, "tobbsoros szoveg");
         tb = new MultiLine(this, 370, 30, 250, 10, "vmi.txt");

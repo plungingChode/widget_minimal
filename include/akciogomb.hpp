@@ -3,18 +3,16 @@
 
 #include "widgets.hpp"
 #include "teglalap.hpp"
-#include <functional>
 
-class Gomb : public Widget
+class AkcioGomb : public Widget
 {
 protected:
-    std::string felirat;
-    std::function<void()> akcio;
+    std::string felirat, akcio;
     bool benyomva;
     teglalap hitbox;
 
 public:
-    Gomb(Application *app, int x, int y, int w, int h, std::string felirat, std::function<void()> akcio);
+    AkcioGomb(Application *app, int x, int y, int w, int h, std::string felirat, std::string akcio);
  
     void handle(genv::event ev) override;
     void draw() override;
