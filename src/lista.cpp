@@ -40,17 +40,14 @@ void Lista::kijelolest_mozgat(int i)
      
 void Lista::torol(int index)
 {
-    if (index >= 0)
-    { 
-        elemek.erase(elemek.begin()+index);
-        if (legfelso >= int(elemek.size())-sorok)
-        {
-            legfelso = max(legfelso-1, 0);
-        } 
-        if (kijelolt == index)
-        {
-            kijelolt = -1;
-        }
+    elemek.erase(elemek.begin()+index);
+    if (legfelso >= int(elemek.size())-sorok)
+    {
+        legfelso = max(legfelso-1, 0);
+    } 
+    if (kijelolt == index)
+    {
+        kijelolt = -1;
     }
 }
 

@@ -48,12 +48,16 @@ public:
 
     void g1_akcio()
     {
-        lis1->hozzaad("xxx");
+        lis1->hozzaad(fnev->get_text());
     }
 
     void g2_akcio()
     {
-        lis1->torol(lis1->kijelolt_index());
+        int index = lis1->kijelolt_index();
+        if (index != -1)
+        {
+            lis1->torol(index);
+        }
     }
  
     void action(std::string ev) 

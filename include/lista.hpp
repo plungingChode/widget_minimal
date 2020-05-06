@@ -20,7 +20,7 @@ public:
     void gorget(int d);
     void kijelolest_mozgat(int i); // nem kotelezo
 
-    std::string ertek() const { if (kijelolt != -1) return elemek[kijelolt]; }
+    std::string ertek() const { if (kijelolt != -1) { return elemek[kijelolt]; } else { return ""; } }
     int kijelolt_index() const { return kijelolt; }
 
     void hozzaad(std::string elem) { elemek.push_back(elem); }
