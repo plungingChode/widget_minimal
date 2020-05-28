@@ -5,7 +5,7 @@
 #include "textbox.hpp"
 #include "application.hpp"
 #include "szambeall.hpp"
-#include "lista.hpp"
+#include "tlista.hpp"
 #include "gomb.hpp"
 #include "multiline.hpp"
 #include <vector>
@@ -14,13 +14,21 @@
 using namespace std;
 using namespace genv;
 
+struct Vmi 
+{
+    int id;
+    string text;
+
+    string str() { return '[' + std::to_string(id) + "] " + text; }
+};
+
 class MyApp : public Application
 {
 protected:
     StaticText *tb_label, *sz_label, *lis_label, *ml_label;
     TextBox *fnev, *tart;
     Szambeall *szb1, *szb2;
-    Lista *lis1, *lis2;
+    TLista<Vmi> *lis1, *lis2;
     Gomb *g1, *g2;
     MultiLine *tb;
 
@@ -36,17 +44,15 @@ public:
         szb2 = new Szambeall(this, 30, 140, 50, 25, -5, -99, 0);
         
         lis_label = new StaticText(this, 150, 10, "lista");
-        lis1 = new Lista(this, 150, 30, 100, 5, {"a", "b"});
-        lis2 = new Lista(this, 260, 30, 100, 3, {"1", "2", "3", "4", "5", "6", "7", "8"});
 
-        g1 = new Gomb(this, 150, 120, 100, 30, "nyomj meg!", [&](){ lis1->hozzaad(fnev->get_text()); });
-        g2 = new Gomb(this, 150, 155, 100, 30, "engem is!", [&](){
-            int index = lis1->kijelolt_index();
-            if (index != -1)
-            {
-                lis1->torol(index);
-            }
-        });
+        vector<Vmi> v1 = {{1, "a"}, {2, "b"}};
+        vector<Vmi> v2 = {{3, "c"}, {4, "d"}, {5, "e"}, {6, "f"}, {7, "g"}};
+
+        lis1 = new TLista<Vmi>(this, 150, 30, 100, 5, v1);
+        lis2 = new TLista<Vmi>(this, 260, 30, 100, 3, v2);
+
+        g1 = new Gomb(this, 150, 120, 100, 30, "nyomj meg!", [&](){ g1_akcio(); });
+        g2 = new Gomb(this, 150, 155, 100, 30, "engem is!", [&](){ g2_akcio(); });
 
         ml_label = new StaticText(this, 370, 10, "tobbsoros szoveg");
         tb = new MultiLine(this, 370, 30, 250, 10, "vmi.txt");
@@ -54,7 +60,7 @@ public:
 
     void g1_akcio()
     {
-        lis1->hozzaad(fnev->get_text());
+        lis1->hozzaad({100, fnev->get_text()});
     }
 
     void g2_akcio()

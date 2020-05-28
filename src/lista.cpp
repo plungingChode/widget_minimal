@@ -70,6 +70,7 @@ void Lista::handle(genv::event ev)
                 if (elem_helyek[i].benne(ev.pos_x, ev.pos_y))
                 {
                     kijelolt = legfelso+i;
+                    break;
                 }
             }
         }

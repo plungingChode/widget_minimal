@@ -1,8 +1,9 @@
-/.vscode
+.vscode
 build
-/obj
-/lib
+obj
+lib
 *.out
 *.o
 *.txt
 *.ttf
+*.code-workspace
